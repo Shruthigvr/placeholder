@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Home from './Home.js';
-import Profile from './Profile.js';
+import Comment from './Comment.js';
 import ReactDOM from 'react-dom';
 import Add from './Add.js';
 import {BrowserRouter as Router, Link,NavLink,Redirect} from 'react-router-dom';
@@ -13,7 +13,8 @@ class App extends Component {
             <Router>
               <div className="App">                
                  
-                  <Route path = "/" exact component = {Home} />        
+                  <Route path = "/" exact component = {Home} />  
+                  <Route path = "/Comment" exact component = {Comment} />        
                   
               </div>
             </Router>
