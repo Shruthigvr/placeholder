@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Home.js';
 import Comment from './Comment.js';
+import Update from './Update.js';
 import ReactDOM from 'react-dom';
 import Add from './Add.js';
 import {BrowserRouter as Router, Link,NavLink,Redirect} from 'react-router-dom';
@@ -15,7 +16,7 @@ class App extends Component {
                  
                   <Route path = "/" exact component = {Home} />  
                   <Route path = "/Comment/:id" exact component = {Comment} />      
-                  
+                  <Route path = "/Update/:id" exact component = {Update} />  
               </div>
             </Router>
         );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Link,NavLink,Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Link, NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import './homestyle.css';
 import Toggle from './Toggle'
@@ -11,22 +11,21 @@ class Home extends Component {
         this.state = {
             posts: [],
             isToggleOn: "My Post",
-            
+
         };
     }
 
     componentDidMount() {
 
 
-        
-            axios.get("https://jsonplaceholder.typicode.com/posts")
+        axios.get("https://jsonplaceholder.typicode.com/posts")
 
-                .then(response => {
-                    const posts = response.data;
-                    console.log(posts);
-                    this.setState({ posts });
-                })
-        
+            .then(response => {
+                const posts = response.data;
+                console.log(posts);
+                this.setState({ posts });
+            })
+
     }
     toggle = () => {
         this.state.isToggleOn == "My Post" ? this.setState({ isToggleOn: "All Post" }) : this.setState({ isToggleOn: "My Post" });
@@ -50,12 +49,12 @@ class Home extends Component {
         }
     }
 
-    deletePost=(id)=>{
+    deletePost = (id) => {
 
-    	this.setState({posts:this.state.posts.splice(id,99)});
-    	console.log("Posts"+this.state.posts);
+        this.setState({ posts: this.state.posts.splice(id, 100) });
+        console.log("Posts" + this.state.posts);
     }
-  
+
 
     render() {
 
@@ -77,7 +76,9 @@ class Home extends Component {
                 	
 					<div>
                 		<button className="btn" onClick={()=>this.deletePost(post.id)}>Delete</button>
+                		<Link to={"/Update"+post.id}>
                 		<button>Update</button>
+                		</Link>
                 	</div>
                 
                 </div>
@@ -86,7 +87,7 @@ class Home extends Component {
 
 				</div>
 			</div>
-		
+
         );
     }
 }

@@ -6,15 +6,51 @@ import './homestyle.css';
 class Update extends Component {
     constructor(props) {
         super(props);
+
     }
+    componentDidMount() {
+
+    
+            axios.get("https://jsonplaceholder.typicode.com/posts/"+this.props.match.params.id)
+
+                .then(response => {
+                    const posts = response.data;
+                    console.log(posts);
+                    this.setState({ posts });
+                    this.refs.title.value=this.state.posts.title;
+                    this.refs.body.value=this.state.posts.body;
+                })
+        }
+
+    updatePost=()=>{
+		axios.put("https://jsonplaceholder.typicode.com/posts/"+this.props.match.params.id,{
+			id: 1,
+      		title: this.refs.title.value,
+      		body: this.refs.body.value,
+      		userId: 3
+		})
+
+		
+
+                .then(response => {
+                    const update = response.data;
+                    console.log(update);
+                    this.setState({ update});
+                })
+        
+    }
+
     render() {
 
         return (
             <div>
 				    <div className="content">
   					<div className="card">
-  					<h1>{this.props.title}</h1>
-  					<article>{this.props.body}</article>
+  					<input type="text" ref="title" placeholder="Update Title"></input>
+  					<br/>
+  					<input type="text" ref="body" placeholder="Update Body"></input>
+  					<button onClick={this.updatePost}>Update</button>
+  					
   					</div>	
 			   </div>
 			   </div>
