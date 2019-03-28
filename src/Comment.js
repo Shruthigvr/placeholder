@@ -28,12 +28,12 @@ render() {
     return (
         <div className="content">
             <div> 
-              <h1>COMMENTS</h1>
-                {this.state.comments.map(comments=>
-                    
+              <h1 className= "header">COMMENTS</h1>
+                {
+                  this.state.comments.map(comment=>
                     <div className="comment"> 
-                      <h2>{comments.name}</h2>
-                      <p>{comments.body}</p>
+                      <h2>{comment.name}</h2>
+                      <p>{comment.body}</p>
                    </div> 
                    )
               }

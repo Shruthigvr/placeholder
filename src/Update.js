@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Link,NavLink,Redirect} from 'react-router-dom';
+import axios from 'axios';
+import './homestyle.css';
 
-class Card extends Component {
+class Update extends Component {
     constructor(props) {
         super(props);
     }
@@ -18,4 +21,4 @@ class Card extends Component {
         )
     }
 }
-export default Card;
+export default Update;

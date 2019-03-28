@@ -44,7 +44,6 @@ body {
 .add-btn {
     float: right;
     background-color: #C9FFFD;
-    border: none;
     color: #3A3A38;
     padding: 6px;
     text-align: center;
@@ -58,9 +57,9 @@ body {
     font-weight: bold;
 
 }
-.job-card, .comment{
+.card{
    
-  	width: 1000px;
+  	width: 900px;
   	height: 150px;
   	margin-left: 130px;
   	margin-top: 130px;
@@ -72,8 +71,41 @@ body {
     color: whitesmoke;
     text-align: center;
 }
+.comment{
+	width: 1000px;
+  	height: 100px;
+  	margin-left: 130px;
+  	margin-top: 50px;
+    padding:30px;
+  	text-align: left;
+    float: left;
+  	background: #325C74;
+  	border-radius: 10px;
+    color: whitesmoke;
+    text-align: center;
+}
 
 .content{
 	width:80%;
 	background: 
+}
+.header{
+	text-align: center;
+	color: #3A5894;
+	font-weight: bolder;
+	font-size: 40px;
+	margin-left: 210px;
+	margin-top: 20px;
+	padding: 10px;
+
+}
+.btn{
+	margin-top: 230px;
+	margin-bottom: 100px;
+	margin-left:10px;
+	border-radius: 10px;
+	color: #325C74;
+	width: 100px;
+	font-size: 22px;
+	font-weight: bold;
 }

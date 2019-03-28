@@ -10,7 +10,8 @@ class Home extends Component {
         super(props);
         this.state = {
             posts: [],
-            isToggleOn: "My Post"
+            isToggleOn: "My Post",
+            
         };
     }
 
@@ -48,23 +49,41 @@ class Home extends Component {
                 })
         }
     }
+
+    deletePost=(id)=>{
+
+    	this.setState({posts:this.state.posts.splice(id,99)});
+    	console.log("Posts"+this.state.posts);
+    }
+  
+
     render() {
 
         return (
             <div>
 				<div className="top-nav">				 
   					<Toggle toggle={this.toggle}/>
+
   				</div>
   				<div>
-  				{this.state.posts.map(post=>
-  				<Link to={'/Comment/'+post.id}>
+  					{this.state.posts.map(post=>
+  				<div>
+  					<Link to={'/Comment/'+post.id}>
   					<div key={post.id} >
-                	<Card key={post.id} title={post.title} body={post.body}/>
-                	
+                		<Card key={post.id} title={post.title} body={post.body}/>
                 	</div>
-                </Link>
+
+                	</Link>
+                	
+					<div>
+                		<button className="btn" onClick={()=>this.deletePost(post.id)}>Delete</button>
+                		<button>Update</button>
+                	</div>
+                
+                </div>
                 	)		
 				}
+
 				</div>
 			</div>
 		
