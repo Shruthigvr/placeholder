@@ -5,6 +5,7 @@ import './homestyle.css';
 import Toggle from './Toggle'
 import Card from './Card'
 
+/* Home Page */
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -16,8 +17,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-
-
+        /*API to list posts */
         axios.get("https://jsonplaceholder.typicode.com/posts")
 
             .then(response => {
@@ -27,6 +27,7 @@ class Home extends Component {
             })
 
     }
+    /* Function for toggle button */
     toggle = () => {
         this.state.isToggleOn == "My Post" ? this.setState({ isToggleOn: "All Post" }) : this.setState({ isToggleOn: "My Post" });
 
@@ -48,42 +49,46 @@ class Home extends Component {
                 })
         }
     }
-
+    /* Function  to delete posts */
     deletePost = (id) => {
+        var item = this.state.posts;
+        var newitem = item.filter(item => item !== id)
+        this.setState({ posts: newitem });
 
-        this.setState({ posts: this.state.posts.splice(id, 100) });
-        console.log("Posts" + this.state.posts);
     }
-
 
     render() {
 
         return (
             <div>
+            	{/*Add new posts */}
 				<div className="top-nav">				 
   					<Toggle toggle={this.toggle}/>
+  					<Link to={"/Newpost/"}>
+                		<button>Add Post</button>
+                	</Link>
 
   				</div>
   				<div>
+  					{/*Looping posts */}
   					{this.state.posts.map(post=>
-  				<div>
-  					<Link to={'/Comment/'+post.id}>
-  					<div key={post.id} >
-                		<Card key={post.id} title={post.title} body={post.body}/>
-                	</div>
-
-                	</Link>
+  						<div>
+  							<Link to={'/Comment/'+post.id}>
+  								<div key={post.id} >
+                					<Card key={post.id} title={post.title} body={post.body}/>
+                				</div>
+                			</Link>
                 	
-					<div>
-                		<button className="btn" onClick={()=>this.deletePost(post.id)}>Delete</button>
-                		<Link to={"/Update"+post.id}>
-                		<button>Update</button>
-                		</Link>
-                	</div>
+						<div>
+                			<button className="btn" onClick={()=>this.deletePost(post.id)}>Delete</button>
+                			<Link to={"/Update/"+post.id}>
+                				<button>Update</button>
+                			</Link>
+                		</div>
                 
                 </div>
-                	)		
-				}
+             		)}		
+							
 
 				</div>
 			</div>

@@ -14,6 +14,7 @@ class Comment extends Component {
 
     componentDidMount() {
 
+        /*To display comments of clicked post */
         axios.get("https://jsonplaceholder.typicode.com/comments?postId="+this.props.match.params.id)
 
             .then(response => {
@@ -30,6 +31,7 @@ render() {
             <div> 
               <h1 className= "header">COMMENTS</h1>
                 {
+                  /*Looping comments */
                   this.state.comments.map(comment=>
                     <div className="comment"> 
                       <h2>{comment.name}</h2>

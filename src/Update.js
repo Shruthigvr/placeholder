@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Link,NavLink,Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Link, NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import './homestyle.css';
 
@@ -10,34 +10,35 @@ class Update extends Component {
     }
     componentDidMount() {
 
-    
-            axios.get("https://jsonplaceholder.typicode.com/posts/"+this.props.match.params.id)
+    	/*API to display current data of the post */
+        axios.get("https://jsonplaceholder.typicode.com/posts/" +
+                this.props.match.params.id)
 
-                .then(response => {
-                    const posts = response.data;
-                    console.log(posts);
-                    this.setState({ posts });
-                    this.refs.title.value=this.state.posts.title;
-                    this.refs.body.value=this.state.posts.body;
+            .then(response => {
+                const posts = response.data;
+                console.log(posts);
+                this.setState({ posts });
+                this.refs.title.value = this.state.posts.title;
+                this.refs.body.value = this.state.posts.body;
+            })
+    }
+
+    updatePost = () => {
+    	/*API to update post */
+        axios.put("https://jsonplaceholder.typicode.com/posts/" +
+                this.props.match.params.id, {
+                    id: 1,
+                    title: this.refs.title.value,
+                    body: this.refs.body.value,
+                    userId: 3
                 })
-        }
 
-    updatePost=()=>{
-		axios.put("https://jsonplaceholder.typicode.com/posts/"+this.props.match.params.id,{
-			id: 1,
-      		title: this.refs.title.value,
-      		body: this.refs.body.value,
-      		userId: 3
-		})
+            .then(response => {
+                const update = response.data;
+                console.log(update);
+                this.setState({ update });
+            })
 
-		
-
-                .then(response => {
-                    const update = response.data;
-                    console.log(update);
-                    this.setState({ update});
-                })
-        
     }
 
     render() {
@@ -45,16 +46,17 @@ class Update extends Component {
         return (
             <div>
 				    <div className="content">
-  					<div className="card">
-  					<input type="text" ref="title" placeholder="Update Title"></input>
-  					<br/>
-  					<input type="text" ref="body" placeholder="Update Body"></input>
-  					<button onClick={this.updatePost}>Update</button>
+  						<div className="card">
+  							<input type="text" ref="title" placeholder="Update Title"></input>
+  							<br/>
+  							<input type="text" ref="body" placeholder="Update Body"></input>
+  							<button onClick={this.updatePost}>Update</button>
   					
-  					</div>	
-			   </div>
-			   </div>
+  						</div>	
+			   		</div>
+			</div>
         )
     }
 }
+
 export default Update;

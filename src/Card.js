@@ -8,14 +8,15 @@ class Card extends Component {
 
         return (
             <div>
-				    <div className="content">
-  					<div className="card">
-  					<h1>{this.props.title}</h1>
-  					<article>{this.props.body}</article>
-  					</div>	
-			   </div>
-			   </div>
+					<div className="content">
+					 	<div className="card">
+							<h1>{this.props.title}</h1>
+							<article>{this.props.body}</article>
+						</div>	
+			   		</div>
+			</div>
         )
     }
 }
+
 export default Card;
